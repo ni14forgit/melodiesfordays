@@ -28,11 +28,19 @@ const Home = () => {
   const [articles, setArticles] = useState([]);
   var storage = firebase.storage();
   var storageRef = storage.ref();
+  var artistsRef = storageRef.child("artists");
   useEffect(async () => {
     const articlesRef = db.collection("articles");
     const snapshot = await articlesRef.get();
     snapshot.forEach((doc) => {
       console.log(doc.id, "=>", doc.data());
+      const data = doc.data();
+      artistsRef
+        .child(doc.id + ".jpg")
+        .getDownloadURL()
+        .then(function (url) {
+          setArticles([{ img: url, text: data.title, date: data.date }]);
+        });
     });
   }, []);
 
@@ -50,7 +58,7 @@ const Home = () => {
             // border: "2px solid black",
           }}
         >
-          {ARTIST_LIST.map((val, ind) => {
+          {articles.map((val, ind) => {
             return <Card image={val.img} title={val.text} date={val.date} />;
           })}
         </div>
