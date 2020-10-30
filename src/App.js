@@ -13,9 +13,9 @@ import { MusicIcon } from "./Constants";
 function App() {
   const history = useHistory();
   useEffect(() => {
-    // history.replace("/home");
+    history.replace("/home");
     // history.replace("/about");
-    history.replace("/article");
+    // history.replace("/article");
   });
   return (
     <div className="App" style={{ alignItems: "center" }}>

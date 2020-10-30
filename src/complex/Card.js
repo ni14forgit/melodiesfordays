@@ -13,11 +13,17 @@ const Card = ({ title, image, date, onClick, id }) => {
   const history = useHistory();
 
   const setArticle = (ind) => {
-    dispatch("SET_TITLE", title);
-    dispatch("SET_DATE", date);
-    dispatch("SET_PROFILE_PHOTO", image);
-    history.push("article");
+    // dispatch("SET_TITLE", title);
+    // dispatch("SET_DATE", date);
+    // dispatch("SET_PROFILE_PHOTO", image);
+    // dispatch("SET_LOCATION", location);
+    // console.log("set article");
+    dispatch("SET_ID", id);
+    history.replace("article");
   };
+
+  var bottomMargin = Math.ceil(title.length / 25) * 32 + 58;
+  // console.log("this is " + bottomMargin);
 
   const newOnClick = onClick ? onClick : setArticle;
 
@@ -35,92 +41,82 @@ const Card = ({ title, image, date, onClick, id }) => {
     >
       <div
         style={{
-          //   zIndex: 100,
-          //   backgroundColor: "blue",
           backgroundSize: "cover",
           backgroundImage: `url(${image})`,
           width: width,
           height: height,
           borderRadius: 10,
+          // position: "absolute",
         }}
       >
         <div
           style={{
-            position: "absolute",
+            // position: "absolute",
             height: height,
             width: width,
             backgroundColor: highlighted ? primary_color : "black",
             zIndex: "100",
-            opacity: "0.40",
+            opacity: "0.3",
             borderRadius: 10,
           }}
         />
-
-        {/* <img
-          src={Zayn}
+        <div
           style={{
-            zIndex: 1,
-            width: "250px",
-            height: "300px",
-            borderRadius: 10,
+            zIndex: "201",
+            position: "absolute",
+            // paddingTop: 235,
+            // paddingTop: -50,
+            marginTop: -bottomMargin,
+            width: 270,
+            // height: "auto",
+            height: 0,
+            // border: "2px solid black",
+            flexDirection: "column",
+            textAlign: "left",
+            alignItems: "flex-end",
+            paddingLeft: "20px",
+            paddingRight: "10px",
+            justifyContent: "flex-end",
           }}
-        /> */}
-      </div>
-      <div
-        style={{
-          zIndex: "201",
-          position: "relative",
-          marginTop: -90,
-
-          height: "auto",
-          // paddingTop: "290px",
-          flexDirection: "column",
-          textAlign: "left",
-          alignItems: "flex-end",
-
-          // paddingBottom: "30px",
-          paddingLeft: "20px",
-          paddingRight: "10px",
-          justifyContent: "flex-start",
-        }}
-      >
-        <ModifiableText
-          text={title}
+        >
+          <ModifiableText
+            text={title}
+            style={{
+              color: highlighted ? "white" : primary_color,
+              fontSize: 22,
+              // position: "relative",
+            }}
+          />
+        </div>
+        <div
           style={{
-            color: highlighted ? "white" : primary_color,
-            fontSize: 22,
-            // paddingTop: 270,
-            position: "relative",
+            zIndex: "201",
+            position: "absolute",
+            // paddingTop: 235,
+            // paddingTop: -50,
+            marginTop: -50,
+            width: 270,
+            // height: "auto",
+            height: 0,
+            // border: "2px solid black",
+            flexDirection: "column",
+            textAlign: "left",
+            alignItems: "flex-end",
+            paddingLeft: "20px",
+            paddingRight: "10px",
+            justifyContent: "flex-end",
           }}
-        />
-      </div>
-      <div
-        style={{
-          zIndex: "201",
-          position: "relative",
-          marginTop: -15,
+        >
+          <ModifiableText
+            text={date}
+            style={{
+              color: highlighted ? "white" : primary_color,
+              fontSize: 15,
 
-          height: "auto",
-          // paddingTop: "290px",
-          flexDirection: "column",
-          textAlign: "left",
-          alignItems: "flex-end",
-
-          // paddingBottom: "30px",
-          paddingLeft: "20px",
-          paddingRight: "10px",
-          justifyContent: "flex-start",
-        }}
-      >
-        <ModifiableText
-          text={date}
-          style={{
-            color: highlighted ? "white" : primary_color,
-            fontSize: 15,
-            // paddingTop: 270,
-            position: "relative",
-          }}
-        />
+              // position: "relative",
+            }}
+          />
+        </div>
       </div>
     </div>
   );

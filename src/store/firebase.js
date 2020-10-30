@@ -3,7 +3,7 @@ import firebase from "firebase";
 //console.log(process.env.REACT_APP_FIREBASE_KEY);
 
 var firebaseConfig = {
-  apiKey: process.env.FirebaseToken,
+  apiKey: "AIzaSyCD8L8Pdud70nd9Up-klF2HkpZI1WBXJaw",
   authDomain: "melodiesfordays.firebaseapp.com",
   databaseURL: "https://melodiesfordays.firebaseio.com",
   projectId: "melodiesfordays",

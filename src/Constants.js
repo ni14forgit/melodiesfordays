@@ -62,7 +62,7 @@ const font_family = {
 };
 
 const about_me_blurb =
-  "Hey guys, what's up! My name's Nishant and I'm a music enthusiast who just wants to share with the world the up-and-coming artists I meet! Even though I don’t make music, I’m passionate about the songs I listen to and even more so the artists that make them. \n I’ll be posting my interviews with artists I come across, during which we’ll discuss their musical backgrounds & genres, notable experiences, and other fun topics! Thanks for checking out my site, and be on the lookout for updates! \n If you're an artist who wants to be featured, DM me @melodiesfordays!";
+  "Hey guys, what's up! My name's Nishant and I'm a music enthusiast who just wants to share with the world the up-and-coming artists I meet! Even though I don’t make music, I’m passionate about the songs I listen to and even more so the artists that make them. \n I’ll be posting my interviews with artists I come across, during which we’ll discuss their musical backgrounds & genres, notable experiences, and other fun topics! Thanks for checking out my site, and be on the lookout for updates!";
 export {
   primary_color,
   font_size,

@@ -2,25 +2,8 @@ import React, { useState, useEffect } from "react";
 import ModifiableText from "../components/ModifiableText";
 import Button from "../components/Button";
 import Card from "../complex/Card";
-import Emily from "../emily.jpg";
-import Eric from "../eric.jpg";
 import firebase from "../store/firebase";
 import { font_family } from "../Constants";
-// import { useStore } from "../store/store";
-// import { useHistory } from "react-router-dom";
-
-const ARTIST_LIST = [
-  {
-    img: Emily,
-    text: "Emili Debuts Single!",
-    date: "October 20th, 2020",
-  },
-  {
-    img: Eric,
-    text: "Meet Beat-ah-Sufah!",
-    date: "October 1st, 2020",
-  },
-];
 
 const db = firebase.firestore();
 
@@ -30,16 +13,24 @@ const Home = () => {
   var storageRef = storage.ref();
   var artistsRef = storageRef.child("artists");
   useEffect(async () => {
-    const articlesRef = db.collection("articles");
-    const snapshot = await articlesRef.get();
+    const headersRef = db.collection("headers");
+    const snapshot = await headersRef.get();
     snapshot.forEach((doc) => {
-      console.log(doc.id, "=>", doc.data());
+      // console.log(doc.id, "=>", doc.data());
       const data = doc.data();
       artistsRef
         .child(doc.id + ".jpg")
         .getDownloadURL()
         .then(function (url) {
-          setArticles([{ img: url, text: data.title, date: data.date }]);
+          setArticles([
+            ...articles,
+            {
+              img: url,
+              text: data.title,
+              date: data.date,
+              id: doc.id,
+            },
+          ]);
         });
     });
   }, []);
@@ -47,19 +38,34 @@ const Home = () => {
   return (
     <div>
       <div style={{ marginLeft: "10vw" }}>
+        {/* <ModifiableText
+          text=""
+          style={{
+            fontSize: 25,
+            textAlign: "left",
+            opacity: 0.8,
+            // marginTop: "px",
+            marginBottom: "20px",
+          }}
+        /> */}
         <div
           style={{
             flexDirection: "row",
             display: "flex",
             maxWidth: "72vw",
             flexWrap: "wrap",
-            // alignItems: "center",
-            // justifyContent: "space-between",
-            // border: "2px solid black",
+            marginTop: "50px",
           }}
         >
           {articles.map((val, ind) => {
-            return <Card image={val.img} title={val.text} date={val.date} />;
+            return (
+              <Card
+                image={val.img}
+                title={val.text}
+                date={val.date}
+                id={val.id}
+              />
+            );
           })}
         </div>
       </div>

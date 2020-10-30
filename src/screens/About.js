@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ModifiableText from "../components/ModifiableText";
 import TextBlockList from "../transition/paragraph/TextBlockList";
-import Me from "../me.jpg";
-import { primary_color, about_me_blurb } from "../Constants";
+import {
+  primary_color,
+  about_me_blurb,
+  InstagramIcon,
+  font_size,
+} from "../Constants";
 import { Button } from "@material-ui/core";
 import ReactPlayer from "react-player/youtube";
 
@@ -11,8 +15,8 @@ const About = ({}) => {
 
   useEffect(() => {
     const newTextList = about_me_blurb.split("\n");
-    console.log(newTextList);
-    console.log(newTextList[0]);
+    // console.log(newTextList);
+    // console.log(newTextList[0]);
 
     const newArticles = [...articles];
     for (var i = 0; i < newTextList.length; i++) {
@@ -26,24 +30,64 @@ const About = ({}) => {
       <div style={{ width: "60vw" }}>
         <div style={{ marginLeft: "100px", marginTop: "100px" }}>
           <TextBlockList items={articles} />
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <ModifiableText
+              text="If you're an artist who wants to be featured, check out @melodiesfordays!"
+              style={{
+                fontSize: font_size.paragraph,
+                textAlign: "left",
+                opacity: "60%",
+              }}
+            />
+            <Button
+              onClick={() => window.open("")}
+              style={{
+                cursor: "default",
+                maxWidth: "20px",
+                textAlign: "center",
+                alignItems: "center",
+                marginLeft: "10px",
+                marginBottom: "10px",
+              }}
+              startIcon={
+                <InstagramIcon
+                  style={{
+                    fontSize: 40,
+                    color: primary_color,
+                    marginRight: "-10px",
+                    opacity: "60%",
+                  }}
+                />
+              }
+            ></Button>
+          </div>
         </div>
       </div>
       <div
         style={{
-          // border: "2px solid black",
-
-          // position: "relative",
-          // display: "flex",
           width: "40vw",
         }}
       >
+        <div>
+          <ModifiableText
+            text="Some of my interviews!"
+            style={{
+              fontSize: font_size.paragraph,
+              textAlign: "center",
+              alignSelf: "right",
+              marginLeft: "5vw",
+              // marginTop: "5vh",
+              width: 445,
+            }}
+          />
+        </div>
         <ReactPlayer
           style={{
             borderRadius: "0.5rem",
             overflow: "hidden",
             alignSelf: "right",
             marginLeft: "5vw",
-            marginTop: "5vh",
+            marginTop: "20px",
           }}
           url="https://www.youtube.com/watch?v=_jcbXpQ9BPU"
           width={445}
@@ -56,6 +100,7 @@ const About = ({}) => {
             alignSelf: "right",
             marginLeft: "5vw",
             marginTop: "5vh",
+            marginBottom: "5vh",
           }}
           url="https://www.youtube.com/watch?v=YakTpnzw3GA"
           width={445}
