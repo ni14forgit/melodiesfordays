@@ -39,7 +39,9 @@ const About = ({}) => {
               }}
             />
             <Button
-              onClick={() => window.open("")}
+              onClick={() =>
+                window.open("https://www.instagram.com/melodiesfordays/")
+              }
               style={{
                 cursor: "default",
                 maxWidth: "20px",

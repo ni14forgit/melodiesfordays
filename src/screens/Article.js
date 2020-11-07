@@ -10,6 +10,7 @@ import useWindowSize from "../UseWindowSize";
 import ArticleHeaderList from "../transition/articleheader/ArticleHeaderList";
 import firebase from "../store/firebase";
 import { BoxLoading } from "react-loadingg";
+import Spotify from "../complex/Spotify";
 
 const LineBreak = () => {
   return (
@@ -181,6 +182,7 @@ const Article = () => {
                 caption={element.caption}
                 width={width * 0.6}
                 height={width * 0.337}
+                style={{ marginTop: "50px" }}
               />
             );
           } else if (element.type === "quote") {
@@ -191,6 +193,8 @@ const Article = () => {
                   fontStyle: "italic",
                   fontSize: font_size.article.quote,
                   textAlign: "left",
+                  marginTop: "50px",
+                  marginBottom: "50px",
                 }}
               />
             );
@@ -202,8 +206,25 @@ const Article = () => {
                 song_title={element.song_title}
                 artist_link={element.artist_link}
                 song_link={element.song_link}
-                style={{ textAlign: "left" }}
+                style={{
+                  textAlign: "left",
+                  marginTop: "50px",
+                }}
                 width={width * 0.6}
+                caption="random caption"
+              />
+            );
+          } else if (element.type === "spotify") {
+            return (
+              <Spotify
+                song_link="https://open.spotify.com/embed/track/45bE4HXI0AwGZXfZtMp8JR"
+                width={width * 0.6}
+                height={"150px"}
+                caption="random caption"
+                style={{
+                  textAlign: "left",
+                  marginTop: "50px",
+                }}
               />
             );
           }

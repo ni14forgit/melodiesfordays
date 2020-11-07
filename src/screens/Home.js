@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import Card from "../complex/Card";
 import firebase from "../store/firebase";
 import { font_family } from "../Constants";
+import Spotify from "../complex/Spotify";
 
 const db = firebase.firestore();
 
@@ -38,16 +39,6 @@ const Home = () => {
   return (
     <div>
       <div style={{ marginLeft: "10vw" }}>
-        {/* <ModifiableText
-          text=""
-          style={{
-            fontSize: 25,
-            textAlign: "left",
-            opacity: 0.8,
-            // marginTop: "px",
-            marginBottom: "20px",
-          }}
-        /> */}
         <div
           style={{
             flexDirection: "row",
