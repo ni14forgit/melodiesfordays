@@ -16,7 +16,6 @@ const About = ({}) => {
   useEffect(() => {
     const newTextList = about_me_blurb.split("\n");
     // console.log(newTextList);
-    // console.log(newTextList[0]);
 
     const newArticles = [...articles];
     for (var i = 0; i < newTextList.length; i++) {
