@@ -5,6 +5,7 @@ import Card from "../complex/Card";
 import firebase from "../store/firebase";
 import { font_family } from "../Constants";
 import Spotify from "../complex/Spotify";
+import LinkModifiableText from "../components/LinkModifiableText";
 
 const db = firebase.firestore();
 
@@ -59,6 +60,12 @@ const Home = () => {
             );
           })}
         </div>
+        {/* <LinkModifiableText
+          text="Hi there marker1 yomama obama lama"
+          linkcombs={[
+            { count: 2, link: "https://www.google.com", marker: "marker1" },
+          ]}
+        /> */}
       </div>
     </div>
   );

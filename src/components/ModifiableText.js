@@ -13,8 +13,9 @@ const ModifiableText = ({ text, style, onClick }) => {
     ...style,
   };
 
-  const newText = text.split("\n").map((str) => <p>{str}</p>);
-
+  // const newText = text.split("\n").map((str) => <p>{str}</p>);
+  // var link = <a href={""}>log in</a>;
+  // const newText = <a>hihi {link} + hihi</a>;
   return (
     <div onClick={onClick}>
       <p style={main_style}>{text}</p>

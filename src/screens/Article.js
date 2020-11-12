@@ -11,6 +11,7 @@ import ArticleHeaderList from "../transition/articleheader/ArticleHeaderList";
 import firebase from "../store/firebase";
 import { BoxLoading } from "react-loadingg";
 import Spotify from "../complex/Spotify";
+import LinkModifiableText from "../components/LinkModifiableText";
 
 const LineBreak = () => {
   return (
@@ -30,12 +31,12 @@ const LineBreak = () => {
 
 const Article = () => {
   const [state, dispatch] = useStore();
-  console.log("hi");
-
   const [headers, setHeaders] = useState([]);
   const [useMasterList, setMasterList] = useState([]);
+  const [linkcombs, setLinkCombs] = useState([]);
   const [loading, setLoading] = useState(true);
   const db = firebase.firestore();
+  // var linkcombs = [];
 
   useEffect(async () => {
     var id = state["id"];
@@ -79,20 +80,8 @@ const Article = () => {
     var profilePictureURL = await artistsRef
       .child(id + ".jpg")
       .getDownloadURL();
-    // setHeaders([
-    //   {
-    //     artistProfilePhoto: ProfilePhoto,
-    //     articleTitle: "emili debuts new single",
-    //     date: "October 21st, 2020",
-    //     location: "Honolulu, Hawaii",
-    //     artistName: "emili",
-    //     insta_link: "https://www.instagram.com/emilimusic/",
-    //     tiktok_link: "https://www.tiktok.com/@emilimusic?source=h5_m",
-    //     spotify_link: "https://open.spotify.com/artist/6Uiy8xNfMVssbTpgo4xIAd",
-    //     soundcloud_link: "https://soundcloud.com/emilimusic",
-    //   },
-    // ]);
     const paragraphs = artistBlogDocData.text;
+    setLinkCombs(artistBlogDocData.linkcombs);
     var paragraph_counter = 0;
     var youtube_counter = 0;
     var soundcloud_counter = 0;
@@ -162,17 +151,23 @@ const Article = () => {
         {useMasterList.map((element) => {
           if (element.type === "paragraph") {
             return (
-              <ModifiableText
+              <LinkModifiableText
                 text={element.text}
                 style={{
                   fontSize: font_size.paragraph,
                   textAlign: "left",
-                  // marginLeft: "10vw",
                   marginTop: "50px",
                   marginBottom: "50px",
                   color: gray_color,
-                  // width: "60vw",
                 }}
+                // linkcombs={[
+                //   {
+                //     count: 1,
+                //     link: "https://www.google.com",
+                //     marker: "marker1",
+                //   },
+                // ]}
+                linkcombs={linkcombs}
               />
             );
           } else if (element.type === "youtube") {
@@ -211,7 +206,7 @@ const Article = () => {
                   marginTop: "50px",
                 }}
                 width={width * 0.6}
-                caption="random caption"
+                caption={element.caption}
               />
             );
           } else if (element.type === "spotify") {
@@ -220,7 +215,7 @@ const Article = () => {
                 song_link="https://open.spotify.com/embed/track/45bE4HXI0AwGZXfZtMp8JR"
                 width={width * 0.6}
                 height={"150px"}
-                caption="random caption"
+                caption={element.caption}
                 style={{
                   textAlign: "left",
                   marginTop: "50px",
