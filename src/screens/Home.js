@@ -14,25 +14,31 @@ const Home = () => {
   var storage = firebase.storage();
   var storageRef = storage.ref();
   var artistsRef = storageRef.child("artists");
+  var artistsNewRef = artistsRef.child("new");
   useEffect(async () => {
     const headersRef = db.collection("headers");
     const snapshot = await headersRef.get();
     snapshot.forEach((doc) => {
-      // console.log(doc.id, "=>", doc.data());
       const data = doc.data();
       artistsRef
         .child(doc.id + ".jpg")
         .getDownloadURL()
         .then(function (url) {
-          setArticles([
-            ...articles,
-            {
-              img: url,
-              text: data.title,
-              date: data.date,
-              id: doc.id,
-            },
-          ]);
+          artistsNewRef
+            .child(doc.id + ".jpg")
+            .getDownloadURL()
+            .then(function (newurl) {
+              setArticles([
+                ...articles,
+                {
+                  img: url,
+                  newimg: newurl,
+                  text: data.title,
+                  date: data.date,
+                  id: doc.id,
+                },
+              ]);
+            });
         });
     });
   }, []);
@@ -53,6 +59,7 @@ const Home = () => {
             return (
               <Card
                 image={val.img}
+                newimage={val.newimg}
                 title={val.text}
                 date={val.date}
                 id={val.id}

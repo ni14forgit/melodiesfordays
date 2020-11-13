@@ -13,7 +13,7 @@ import { MusicIcon } from "./Constants";
 function App() {
   const history = useHistory();
   useEffect(() => {
-    history.replace("/home");
+    // history.replace("/home");
     // history.replace("/about");
     // history.replace("/article");
   });
@@ -66,15 +66,19 @@ function App() {
         </div>
       </div>
 
+      <Route exact path="/" render={(props) => <Home />} />
       <Route path="/home">
         <Home />
       </Route>
+
       <Route path="/about">
         <About />
       </Route>
-      <Route path="/article">
-        <Article />
-      </Route>
+      <Route
+        path="/article/:id"
+        render={({ match }) => <Article match={match} />}
+      />
+      {/* </Route> */}
     </div>
   );
 }

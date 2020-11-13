@@ -25,7 +25,6 @@ const LinkModifiableText = ({ text, style, onClick, linkcombs }) => {
     const found = textList.findIndex(
       (element) => element === linkcombs[linkcounter].marker
     );
-    // console.log(linkelem);
     if (found !== -1) {
       // const titleOfLink = textList[found + 1];
       const titleOfLink = textList

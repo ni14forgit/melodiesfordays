@@ -1,7 +1,5 @@
 import firebase from "firebase";
 
-//console.log(process.env.REACT_APP_FIREBASE_KEY);
-
 var firebaseConfig = {
   apiKey: "AIzaSyCD8L8Pdud70nd9Up-klF2HkpZI1WBXJaw",
   authDomain: "melodiesfordays.firebaseapp.com",

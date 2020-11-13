@@ -15,7 +15,6 @@ const About = ({}) => {
 
   useEffect(() => {
     const newTextList = about_me_blurb.split("\n");
-    // console.log(newTextList);
 
     const newArticles = [...articles];
     for (var i = 0; i < newTextList.length; i++) {
@@ -90,11 +89,11 @@ const About = ({}) => {
             marginLeft: "5vw",
             marginTop: "20px",
           }}
-          url="https://www.youtube.com/watch?v=_jcbXpQ9BPU"
+          url="https://www.youtube.com/watch?v=v2UYWLcGaJs"
           width={445}
           height={250}
         />
-        <ReactPlayer
+        {/* <ReactPlayer
           style={{
             borderRadius: "0.5rem",
             overflow: "hidden",
@@ -106,7 +105,7 @@ const About = ({}) => {
           url="https://www.youtube.com/watch?v=YakTpnzw3GA"
           width={445}
           height={250}
-        />
+        /> */}
       </div>
     </div>
   );

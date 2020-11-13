@@ -5,7 +5,7 @@ import ModifiableText from "../components/ModifiableText";
 import { useStore } from "../store/store";
 import { useHistory } from "react-router-dom";
 
-const Card = ({ title, image, date, onClick, id }) => {
+const Card = ({ title, image, date, onClick, id, newimage }) => {
   const height = "350px";
   const width = "300px";
   const [highlighted, setHighlighted] = useState(false);
@@ -13,17 +13,11 @@ const Card = ({ title, image, date, onClick, id }) => {
   const history = useHistory();
 
   const setArticle = (ind) => {
-    // dispatch("SET_TITLE", title);
-    // dispatch("SET_DATE", date);
-    // dispatch("SET_PROFILE_PHOTO", image);
-    // dispatch("SET_LOCATION", location);
-    // console.log("set article");
     dispatch("SET_ID", id);
-    history.replace("article");
+    history.replace("article/" + id);
   };
 
   var bottomMargin = Math.ceil(title.length / 25) * 32 + 58;
-  // console.log("this is " + bottomMargin);
 
   const newOnClick = onClick ? onClick : setArticle;
 
@@ -42,7 +36,7 @@ const Card = ({ title, image, date, onClick, id }) => {
       <div
         style={{
           backgroundSize: "cover",
-          backgroundImage: `url(${image})`,
+          backgroundImage: `url(${highlighted ? newimage : image})`,
           width: width,
           height: height,
           borderRadius: 10,

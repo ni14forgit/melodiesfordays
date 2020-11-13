@@ -29,7 +29,7 @@ const LineBreak = () => {
   );
 };
 
-const Article = () => {
+const Article = ({ match }) => {
   const [state, dispatch] = useStore();
   const [headers, setHeaders] = useState([]);
   const [useMasterList, setMasterList] = useState([]);
@@ -39,7 +39,8 @@ const Article = () => {
   // var linkcombs = [];
 
   useEffect(async () => {
-    var id = state["id"];
+    // var id = state["id"];
+    var id = match.params.id;
 
     if (id) {
       localStorage.setItem("id", id);
@@ -59,7 +60,7 @@ const Article = () => {
     const soundcloud = [];
     artistBlogMediaSnapshot.forEach((doc) => {
       const artistBlogMediaSnapshotData = doc.data();
-      // console.log(doc.id, "=>", doc.data());
+
       switch (artistBlogMediaSnapshotData.type) {
         case "youtube":
           // code block
@@ -71,7 +72,6 @@ const Article = () => {
           break;
         default:
         // code block
-        // console.log("firebase issue?");
       }
     });
     var storage = firebase.storage();
