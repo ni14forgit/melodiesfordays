@@ -6,6 +6,7 @@ import firebase from "../store/firebase";
 import { font_family } from "../Constants";
 import Spotify from "../complex/Spotify";
 import LinkModifiableText from "../components/LinkModifiableText";
+import useWindowSize from "../UseWindowSize";
 
 const db = firebase.firestore();
 
@@ -14,7 +15,11 @@ const Home = () => {
   var storage = firebase.storage();
   var storageRef = storage.ref();
   var artistsRef = storageRef.child("artists");
-  var artistsNewRef = artistsRef.child("new");
+  // var artistsNewRef = artistsRef.child("new");
+  const [width, height] = useWindowSize();
+  const isMobile = () => {
+    return width <= 500;
+  };
   useEffect(async () => {
     const headersRef = db.collection("headers");
     const snapshot = await headersRef.get();
@@ -24,35 +29,39 @@ const Home = () => {
         .child(doc.id + ".jpg")
         .getDownloadURL()
         .then(function (url) {
-          artistsNewRef
-            .child(doc.id + ".jpg")
-            .getDownloadURL()
-            .then(function (newurl) {
-              setArticles([
-                ...articles,
-                {
-                  img: url,
-                  newimg: newurl,
-                  text: data.title,
-                  date: data.date,
-                  id: doc.id,
-                },
-              ]);
-            });
+          setArticles([
+            ...articles,
+            {
+              img: url,
+
+              text: data.title,
+              date: data.date,
+              id: doc.id,
+            },
+          ]);
         });
     });
   }, []);
 
   return (
     <div>
-      <div style={{ marginLeft: "10vw" }}>
+      <div
+        style={{
+          marginLeft: isMobile() ? null : "10vw",
+          width: "100vw",
+          // border: "2px solid purple",
+        }}
+      >
         <div
           style={{
-            flexDirection: "row",
-            display: "flex",
-            maxWidth: "72vw",
+            flexDirection: isMobile() ? "column" : "row",
+            display: isMobile() ? null : "flex",
+            width: isMobile() ? "300px" : "72vw",
             flexWrap: "wrap",
+            margin: isMobile() ? "auto" : null,
             marginTop: "50px",
+            // border: "2px solid black",
+            textAlign: isMobile() ? "center" : null,
           }}
         >
           {articles.map((val, ind) => {

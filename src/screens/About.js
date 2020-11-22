@@ -9,9 +9,16 @@ import {
 } from "../Constants";
 import { Button } from "@material-ui/core";
 import ReactPlayer from "react-player/youtube";
+import useWindowSize from "../UseWindowSize";
 
 const About = ({}) => {
   const [articles, setArticles] = useState([]);
+
+  const [width, height] = useWindowSize();
+
+  const isMobile = () => {
+    return width <= 500;
+  };
 
   useEffect(() => {
     const newTextList = about_me_blurb.split("\n");
@@ -24,9 +31,20 @@ const About = ({}) => {
     setArticles(newArticles);
   }, []);
   return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
-      <div style={{ width: "60vw" }}>
-        <div style={{ marginLeft: "100px", marginTop: "100px" }}>
+    <div
+      style={{ display: "flex", flexDirection: isMobile() ? "column" : "row" }}
+    >
+      <div
+        style={{
+          width: isMobile() ? "100vw" : "60vw",
+        }}
+      >
+        <div
+          style={{
+            marginLeft: isMobile() ? "20px" : "100px",
+            marginTop: isMobile() ? "40px" : "100px",
+          }}
+        >
           <TextBlockList items={articles} />
           <div style={{ display: "flex", flexDirection: "row" }}>
             <ModifiableText
@@ -37,29 +55,31 @@ const About = ({}) => {
                 opacity: "60%",
               }}
             />
-            <Button
-              onClick={() =>
-                window.open("https://www.instagram.com/melodiesfordays/")
-              }
-              style={{
-                cursor: "default",
-                maxWidth: "20px",
-                textAlign: "center",
-                alignItems: "center",
-                marginLeft: "10px",
-                marginBottom: "10px",
-              }}
-              startIcon={
-                <InstagramIcon
-                  style={{
-                    fontSize: 40,
-                    color: primary_color,
-                    marginRight: "-10px",
-                    opacity: "60%",
-                  }}
-                />
-              }
-            ></Button>
+            {isMobile() ? null : (
+              <Button
+                onClick={() =>
+                  window.open("https://www.instagram.com/melodiesfordays/")
+                }
+                style={{
+                  cursor: "default",
+                  maxWidth: "20px",
+                  textAlign: "center",
+                  alignItems: "center",
+                  marginLeft: "10px",
+                  marginBottom: "10px",
+                }}
+                startIcon={
+                  <InstagramIcon
+                    style={{
+                      fontSize: 40,
+                      color: primary_color,
+                      marginRight: "-10px",
+                      opacity: "60%",
+                    }}
+                  />
+                }
+              ></Button>
+            )}
           </div>
         </div>
       </div>
@@ -73,11 +93,11 @@ const About = ({}) => {
             text="Some of my interviews!"
             style={{
               fontSize: font_size.paragraph,
-              textAlign: "center",
-              alignSelf: "right",
-              marginLeft: "5vw",
+              textAlign: isMobile() ? "left" : "center",
+              alignSelf: isMobile() ? null : "right",
+              marginLeft: isMobile() ? "20px" : "5vw",
               // marginTop: "5vh",
-              width: 445,
+              width: isMobile() ? width : 445,
             }}
           />
         </div>
@@ -86,12 +106,12 @@ const About = ({}) => {
             borderRadius: "0.5rem",
             overflow: "hidden",
             alignSelf: "right",
-            marginLeft: "5vw",
+            marginLeft: isMobile() ? "20px" : "5vw",
             marginTop: "20px",
           }}
           url="https://www.youtube.com/watch?v=v2UYWLcGaJs"
-          width={445}
-          height={250}
+          width={isMobile() ? width * 0.9 : 445}
+          height={isMobile() ? width * 0.5 : 250}
         />
         {/* <ReactPlayer
           style={{

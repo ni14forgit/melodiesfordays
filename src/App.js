@@ -8,7 +8,8 @@ import { Route, useHistory } from "react-router-dom";
 import ModifiableText from "./components/ModifiableText";
 import ButtonMe from "./components/Button";
 import { Button } from "@material-ui/core";
-import { MusicIcon } from "./Constants";
+import { MusicIcon, font_size } from "./Constants";
+import useWindowSize from "./UseWindowSize";
 
 function App() {
   const history = useHistory();
@@ -17,13 +18,19 @@ function App() {
     // history.replace("/about");
     // history.replace("/article");
   });
+  const [width, height] = useWindowSize();
+
+  const isMobile = () => {
+    return width <= 500;
+  };
+
   return (
     <div className="App" style={{ alignItems: "center" }}>
       <div style={{ display: "inline-block" }}>
         <div
           style={{
             flexDirection: "row",
-            width: "80vw",
+            width: isMobile() ? "95vw" : "80vw",
             alignItems: "center",
             display: "flex",
             justifyContent: "space-between",
@@ -44,14 +51,17 @@ function App() {
                 startIcon={
                   <MusicIcon
                     style={{
-                      fontSize: 40,
+                      fontSize: isMobile() ? 30 : 40,
                       color: "#f59c42",
                     }}
                   />
                 }
               ></Button>
               <div>
-                <ModifiableText text="melodiesfordays" />
+                <ModifiableText
+                  style={{ fontSize: isMobile() ? 20 : font_size.home_title }}
+                  text="melodiesfordays"
+                />
               </div>
             </div>
           </div>
@@ -61,6 +71,7 @@ function App() {
               onClick={() => history.replace("/about")}
               background="#f59c42"
               text={"About me"}
+              passedstyle={{ fontSize: isMobile() ? 16 : 20 }}
             />
           </div>
         </div>

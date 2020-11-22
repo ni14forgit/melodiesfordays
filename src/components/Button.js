@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ModifiableText from "./ModifiableText";
 import Rubik from "../fonts/Rubik-Bold.ttf";
 
-const Button = ({ background, foreground, text, onClick }) => {
+const Button = ({ background, foreground, text, onClick, passedstyle }) => {
   const [shadow, setShadow] = useState(false);
   const backgroundstyle = {
     borderRadius: 5,
@@ -33,6 +33,7 @@ const Button = ({ background, foreground, text, onClick }) => {
     paddingLeft: 10,
     paddingTop: 5,
     paddingBottom: 5,
+    ...passedstyle,
   };
   return (
     <div

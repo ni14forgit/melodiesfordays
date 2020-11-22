@@ -4,10 +4,15 @@ import { primary_color } from "../Constants";
 import ModifiableText from "../components/ModifiableText";
 import { useStore } from "../store/store";
 import { useHistory } from "react-router-dom";
+import useWindowSize from "../UseWindowSize";
 
-const Card = ({ title, image, date, onClick, id, newimage }) => {
-  const height = "350px";
-  const width = "300px";
+const Card = ({ title, image, date, onClick, id }) => {
+  const [realWidth, realHeight] = useWindowSize();
+  const isMobile = () => {
+    return realWidth <= 500;
+  };
+  const height = isMobile() ? "180px" : "350px";
+  const width = isMobile() ? "300px" : "300px";
   const [highlighted, setHighlighted] = useState(false);
   const [state, dispatch] = useStore();
   const history = useHistory();
@@ -36,7 +41,7 @@ const Card = ({ title, image, date, onClick, id, newimage }) => {
       <div
         style={{
           backgroundSize: "cover",
-          backgroundImage: `url(${highlighted ? newimage : image})`,
+          backgroundImage: `url(${image})`,
           width: width,
           height: height,
           borderRadius: 10,
