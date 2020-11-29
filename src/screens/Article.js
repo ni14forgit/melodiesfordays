@@ -58,6 +58,7 @@ const Article = ({ match }) => {
     const artistBlogMediaSnapshot = await artistBlogMediaRef.get();
     const youtube = [];
     const soundcloud = [];
+    const spotify = [];
     artistBlogMediaSnapshot.forEach((doc) => {
       const artistBlogMediaSnapshotData = doc.data();
 
@@ -70,6 +71,10 @@ const Article = ({ match }) => {
           // code block
           soundcloud.push(artistBlogMediaSnapshotData);
           break;
+        case "spotify":
+          spotify.push(artistBlogMediaSnapshotData);
+          break;
+
         default:
         // code block
       }
@@ -85,6 +90,7 @@ const Article = ({ match }) => {
     var paragraph_counter = 0;
     var youtube_counter = 0;
     var soundcloud_counter = 0;
+    var spotify_counter = 0;
     var media_counter = 0;
     var masterList = [];
     var generalMediaList = [];
@@ -94,7 +100,8 @@ const Article = ({ match }) => {
     });
     while (
       youtube_counter < youtube.length ||
-      soundcloud_counter < soundcloud.length
+      soundcloud_counter < soundcloud.length ||
+      spotify_counter < spotify.length
     ) {
       if (youtube_counter < youtube.length) {
         generalMediaList.push(youtube[youtube_counter]);
@@ -103,6 +110,10 @@ const Article = ({ match }) => {
       if (soundcloud_counter < soundcloud.length) {
         generalMediaList.push(soundcloud[soundcloud_counter]);
         soundcloud_counter = soundcloud_counter + 1;
+      }
+      if (spotify_counter < spotify.length) {
+        generalMediaList.push(spotify[spotify_counter]);
+        spotify_counter = spotify_counter + 1;
       }
     }
     // isSoundcloud = true;
@@ -132,7 +143,7 @@ const Article = ({ match }) => {
         articleTitle: headerDocData.title,
         date: headerDocData.date,
         location: headerDocData.location,
-        artistName: headerDocData.name,
+        artistName: headerDocData.headername,
         insta_link: artistBlogDocData.insta,
         tiktok_link: artistBlogDocData.tiktok,
         spotify_link: artistBlogDocData.spotify,
@@ -212,7 +223,7 @@ const Article = ({ match }) => {
           } else if (element.type === "spotify") {
             return (
               <Spotify
-                song_link="https://open.spotify.com/embed/track/45bE4HXI0AwGZXfZtMp8JR"
+                song_link={element.song_link}
                 width={width * 0.6}
                 height={"150px"}
                 caption={element.caption}
