@@ -34,7 +34,7 @@ const Home = () => {
   function isFirstBeforeSecond(one, two) {
     const oneDate = one.added.split("/");
     const twoDate = two.added.split("/");
-    for (var i = 2; i <= 0; i--) {
+    for (var i = 2; i >= 0; i--) {
       if (parseInt(twoDate[i], 10) !== parseInt(oneDate[i], 10)) {
         return parseInt(oneDate[i], 10) < parseInt(twoDate[i], 10);
       }
