@@ -29,6 +29,13 @@ function SpotifyIcon(props) {
     </SvgIcon>
   );
 }
+function YoutubeIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M 19.015625 3.507812 L 4.984375 3.507812 C 2.230469 3.507812 0 5.738281 0 8.492188 L 0 15.507812 C 0 18.261719 2.230469 20.492188 4.984375 20.492188 L 19.015625 20.492188 C 21.769531 20.492188 24 18.261719 24 15.507812 L 24 8.492188 C 24 5.738281 21.769531 3.507812 19.015625 3.507812 Z M 15.644531 12.339844 L 9.082031 15.472656 C 8.90625 15.554688 8.703125 15.425781 8.703125 15.234375 L 8.703125 8.777344 C 8.703125 8.582031 8.914062 8.453125 9.085938 8.542969 L 15.648438 11.867188 C 15.84375 11.96875 15.84375 12.246094 15.644531 12.339844 Z M 15.644531 12.339844 " />
+    </SvgIcon>
+  );
+}
 function SoundCloudIcon(props) {
   return (
     <SvgIcon {...props}>
@@ -62,7 +69,7 @@ const font_family = {
 };
 
 const about_me_blurb =
-  "Hey guys, what's up! My name's Nishant and I'm a music enthusiast who just wants to share with the world the up-and-coming artists I meet! Even though I don’t make music, I’m passionate about the songs I listen to and even more so the artists that make them. \n I’ll be posting my interviews with artists I come across, during which we’ll discuss their musical backgrounds & genres, notable experiences, and other fun topics! Thanks for checking out my site, and be on the lookout for updates!";
+  "melodiesfordays is a passion project to share the stories of smaller musicians and their music. There’s no better feeling than finding a song that slaps and showing it to your friends, and I wanted to take that to the next level. Also, it’s been great getting to meet artists, learning from their experiences, and most importantly continuing to be inspired!  \n My goal’s to get fans and artists to be more connected, and allow upcoming musicians to access a wider audience.  Feel free to dm me on insta: @melodiesfordays about anything, whether you’re an artist who wants to send over some music, or just someone who’s interested in the music scene.";
 export {
   primary_color,
   font_size,
@@ -74,4 +81,5 @@ export {
   InstagramIcon,
   SpotifyIcon,
   TikTokIcon,
+  YoutubeIcon,
 };

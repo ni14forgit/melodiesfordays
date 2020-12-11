@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
-import ModifiableText from "../components/ModifiableText";
-import Button from "../components/Button";
 import Card from "../complex/Card";
 import firebase from "../store/firebase";
-import { font_family } from "../Constants";
-import Spotify from "../complex/Spotify";
-import LinkModifiableText from "../components/LinkModifiableText";
+import LinksWidget from "../complex/LinksWidget";
 import useWindowSize from "../UseWindowSize";
 
 const db = firebase.firestore();
@@ -20,16 +16,6 @@ const Home = () => {
   const isMobile = () => {
     return width <= 500;
   };
-
-  // setArticles((oldList) => [
-  //   ...oldList,
-  // {
-  //   img: url,
-  //   text: data.title,
-  //   date: data.date,
-  //   id: doc.id,
-  // },
-  // ]);
 
   function isFirstBeforeSecond(one, two) {
     const oneDate = one.added.split("/");
@@ -114,11 +100,12 @@ const Home = () => {
 
   return (
     <div>
+      <LinksWidget height={height} isMobile={isMobile()} />
       <div
         style={{
           marginLeft: isMobile() ? null : "10vw",
           width: "100vw",
-          marginTop: isMobile() ? null : "40px",
+          marginTop: isMobile() ? "10px" : "40px",
           // border: "2px solid purple",
         }}
       >
@@ -146,12 +133,6 @@ const Home = () => {
             );
           })}
         </div>
-        {/* <LinkModifiableText
-          text="Hi there marker1 yomama obama lama"
-          linkcombs={[
-            { count: 2, link: "https://www.google.com", marker: "marker1" },
-          ]}
-        /> */}
       </div>
     </div>
   );

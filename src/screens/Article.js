@@ -155,7 +155,7 @@ const Article = ({ match }) => {
   const [width, height] = useWindowSize();
 
   return !loading ? (
-    <div>
+    <div style={{ marginTop: "30px" }}>
       <ArticleHeaderList items={headers} />
 
       <div style={{ maxWidth: "60vw", margin: "auto", marginTop: "100px" }}>
@@ -171,13 +171,6 @@ const Article = ({ match }) => {
                   marginBottom: "50px",
                   color: gray_color,
                 }}
-                // linkcombs={[
-                //   {
-                //     count: 1,
-                //     link: "https://www.google.com",
-                //     marker: "marker1",
-                //   },
-                // ]}
                 linkcombs={linkcombs}
               />
             );
@@ -263,19 +256,13 @@ const Article = ({ match }) => {
                 width: 100,
                 height: 100,
                 borderRadius: 50,
-                // textAlign: "left",
-                // border: "4px solid #f59c42",
-                // marginTop: "50px",
               }}
             />
             <div
               style={{
-                // display: "flex",
                 height: 50,
                 marginLeft: "15px",
-                // marginBottom: "-30px",
                 marginTop: "30px",
-                // border: "4px solid black",
               }}
             >
               <ModifiableText
@@ -284,7 +271,6 @@ const Article = ({ match }) => {
                   fontSize: 17,
                   color: gray_color,
                   height: 20,
-                  // border: "2px solid black",
                 }}
               />
               <ModifiableText
@@ -292,9 +278,9 @@ const Article = ({ match }) => {
                 style={{
                   fontSize: 17,
                   fontWeight: "regular",
-                  // color: gray_color,
+
                   height: 20,
-                  // border: "2px solid black",
+
                   marginTop: "-16px",
                 }}
               />

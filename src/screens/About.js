@@ -7,9 +7,10 @@ import {
   InstagramIcon,
   font_size,
 } from "../Constants";
-import { Button } from "@material-ui/core";
-import ReactPlayer from "react-player/youtube";
+// import { Button } from "@material-ui/core";
+// import ReactPlayer from "react-player/youtube";
 import useWindowSize from "../UseWindowSize";
+import Playlist from "./Playlist";
 
 const About = ({}) => {
   const [articles, setArticles] = useState([]);
@@ -32,7 +33,11 @@ const About = ({}) => {
   }, []);
   return (
     <div
-      style={{ display: "flex", flexDirection: isMobile() ? "column" : "row" }}
+      style={{
+        display: "flex",
+        flexDirection: isMobile() ? "column" : "row",
+        marginTop: isMobile() ? "40px" : "100px",
+      }}
     >
       <div
         style={{
@@ -41,91 +46,39 @@ const About = ({}) => {
       >
         <div
           style={{
-            marginLeft: isMobile() ? "20px" : "100px",
-            marginTop: isMobile() ? "40px" : "100px",
+            marginLeft: isMobile() ? "10px" : "100px",
           }}
         >
           <TextBlockList items={articles} />
-          <div style={{ display: "flex", flexDirection: "row" }}>
-            <ModifiableText
-              text="If you're an artist who wants to be featured, check out @melodiesfordays!"
-              style={{
-                fontSize: font_size.paragraph,
-                textAlign: "left",
-                opacity: "60%",
-              }}
-            />
-            {isMobile() ? null : (
-              <Button
-                onClick={() =>
-                  window.open("https://www.instagram.com/melodiesfordays/")
-                }
-                style={{
-                  cursor: "default",
-                  maxWidth: "20px",
-                  textAlign: "center",
-                  alignItems: "center",
-                  marginLeft: "10px",
-                  marginBottom: "10px",
-                }}
-                startIcon={
-                  <InstagramIcon
-                    style={{
-                      fontSize: 40,
-                      color: primary_color,
-                      marginRight: "-10px",
-                      opacity: "60%",
-                    }}
-                  />
-                }
-              ></Button>
-            )}
-          </div>
         </div>
+        <iframe
+          src="https://giphy.com/embed/mTuvku74NSGnC"
+          width={isMobile() ? width * 0.9 : "480"}
+          height={isMobile() ? width * 0.51 : "270"}
+          frameBorder="0"
+          class="giphy-embed"
+          style={{
+            borderRadius: "10px",
+            marginTop: "30px",
+            maxWidth: "90%",
+            // border: "2px solid black",
+          }}
+          allowFullScreen
+        ></iframe>
       </div>
       <div
         style={{
-          width: "40vw",
+          width: isMobile() ? "100vw" : "40vw",
         }}
       >
-        <div>
-          <ModifiableText
-            text="Some of my interviews!"
-            style={{
-              fontSize: font_size.paragraph,
-              textAlign: isMobile() ? "left" : "center",
-              alignSelf: isMobile() ? null : "right",
-              marginLeft: isMobile() ? "20px" : "5vw",
-              // marginTop: "5vh",
-              width: isMobile() ? width : 445,
-            }}
-          />
+        <div
+          style={{
+            marginTop: isMobile() ? "10px" : "0px",
+            alignItems: "center",
+          }}
+        >
+          <Playlist width={isMobile() ? width * 0.9 : width * 0.3} />
         </div>
-        <ReactPlayer
-          style={{
-            borderRadius: "0.5rem",
-            overflow: "hidden",
-            alignSelf: "right",
-            marginLeft: isMobile() ? "20px" : "5vw",
-            marginTop: "20px",
-          }}
-          url="https://www.youtube.com/watch?v=v2UYWLcGaJs"
-          width={isMobile() ? width * 0.9 : 445}
-          height={isMobile() ? width * 0.5 : 250}
-        />
-        {/* <ReactPlayer
-          style={{
-            borderRadius: "0.5rem",
-            overflow: "hidden",
-            alignSelf: "right",
-            marginLeft: "5vw",
-            marginTop: "5vh",
-            marginBottom: "5vh",
-          }}
-          url="https://www.youtube.com/watch?v=YakTpnzw3GA"
-          width={445}
-          height={250}
-        /> */}
       </div>
     </div>
   );

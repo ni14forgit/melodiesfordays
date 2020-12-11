@@ -10,7 +10,7 @@ const TextBlock = ({ text }) => {
     return width <= 500;
   };
   return (
-    <div style={{ width: isMobile() ? "95vw" : "50vw", textAlign: "left" }}>
+    <div style={{ width: isMobile() ? "95vw" : "50vw", textAlign: "center" }}>
       <ModifiableText text={text} style={{ fontSize: font_size.paragraph }} />
     </div>
   );
